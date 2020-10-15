@@ -1,0 +1,45 @@
+#!/bin/bash
+# shellcheck disable=SC2001
+# shellcheck disable=SC1091
+# shellcheck disable=SC2086
+# shellcheck disable=SC1090
+#! /bin/bash
+
+set -eu
+
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+VERSION=$(<"$BASEDIR/VERSION")
+
+# . "$BASEDIR/lib/shared.bash"
+
+echo -e "~~~ :bash: \033[33mRepository\033[0m Buildkite Plugin v$VERSION"
+
+echo "Checking for Ruby"
+if test -f ".ruby-version"; then
+  export RUBY_VERSION=$(cat .ruby-version)
+  echo "Ruby version: v${RUBY_VERSION}. Also exported to RUBY_VERSION"
+  rvm install ruby-${RUBY_VERSION}
+  rvm use ruby-${RUBY_VERSION}
+fi
+
+echo "Checking for NodeJS"
+if test -f ".node-version"; then
+  export NODE_VERSION=$(cat .node-version)
+  echo "Node version: v${NODE_VERSION}. Also exported to NODE_VERSION"
+  n ${NODE_VERSION}
+  echo "Yarn version: $(yarn -v)"
+else
+  export NODE_VERSION="latest"
+  echo "Fallback to NodeJS latest version"
+  echo "Node version: ${NODE_VERSION}. Also exported to NODE_VERSION"
+  n ${NODE_VERSION}
+  echo "Yarn version: $(yarn -v)"
+fi
+
+echo "Checking for Golang"
+if test -f ".go-version"; then
+  export GO_VERSION=$(cat .go-version)
+  echo "Golang version: v${GO_VERSION}. Also exported to GO_VERSION"
+  goenv install ${GO_VERSION}
+  goenv global ${GO_VERSION}
+fi

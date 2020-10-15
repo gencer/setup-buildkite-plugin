@@ -1,0 +1,16 @@
+name: Setup
+description: Setup required tools using RVM, tj/n or Goenv. They must be preinstalled on host.
+author: https://github.com/gencer
+requirements:
+  - aws
+  - n
+  - rvm
+  - goenv
+configuration:
+  properties:
+    # key:
+    #   type: string
+    env:
+      type: [string, array]
+      minimum: 2
+  additionalProperties: false
