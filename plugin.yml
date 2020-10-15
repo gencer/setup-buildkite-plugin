@@ -8,8 +8,12 @@ requirements:
   - goenv
 configuration:
   properties:
-    # key:
-    #   type: string
+    node:
+      type: string
+    go:
+      type: string
+    ruby:
+      type: string
     env:
       type: [string, array]
       minimum: 2
