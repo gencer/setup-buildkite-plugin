@@ -9,7 +9,6 @@ set -eu
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 VERSION=$(<"$BASEDIR/VERSION")
-
 # . "$BASEDIR/lib/shared.bash"
 
 echo -e "~~~ :bash: \033[33mRepository\033[0m Buildkite Plugin v$VERSION"
@@ -19,6 +18,9 @@ if test -f ".ruby-version"; then
   export RUBY_VERSION=$(cat .ruby-version)
   echo "Ruby version: v${RUBY_VERSION}. Also exported to RUBY_VERSION"
   rvm install ruby-${RUBY_VERSION}
+  if [[ -n "${BKHOME:-}" ]]; then
+    [[ -s "$BKHOME/.rvm/scripts/rvm" ]] && source "$BKHOME/.rvm/scripts/rvm"
+  end
   rvm use ruby-${RUBY_VERSION}
 fi
 
