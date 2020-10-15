@@ -18,6 +18,7 @@ if test -f ".ruby-version"; then
   export RUBY_VERSION=$(cat .ruby-version)
   echo "Ruby version: v${RUBY_VERSION}. Also exported to RUBY_VERSION"
   rvm install ruby-${RUBY_VERSION}
+  rvm alias create default ruby-${RUBY_VERSION}
   ruby -v
   gem install bundler
 fi
