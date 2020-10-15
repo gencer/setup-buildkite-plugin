@@ -36,7 +36,6 @@ else
   echo "Fallback to NodeJS latest version"
   echo "Node version: ${NODE_VERSION}. Also exported to NODE_VERSION"
   n ${NODE_VERSION}
-  echo "Yarn version: $(yarn -v)"
   node -v
   yarn -v
 fi
@@ -48,4 +47,6 @@ if test -f ".go-version"; then
   goenv install ${GO_VERSION}
   goenv global ${GO_VERSION}
   go version
+else
+  echo "No Golang. Skipping..."
 fi
