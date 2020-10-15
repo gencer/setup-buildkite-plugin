@@ -5,7 +5,7 @@
 # shellcheck disable=SC1090
 #! /bin/bash
 
-set -eu
+set -xeo pipefail
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 VERSION=$(<"$BASEDIR/VERSION")
