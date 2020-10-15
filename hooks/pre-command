@@ -25,6 +25,7 @@ if test -f ".ruby-version"; then
   set -u
   rvm use ruby-${RUBY_VERSION}
   ruby -v
+  gem install bundler
 fi
 
 echo "Checking for NodeJS"
