@@ -18,9 +18,11 @@ if test -f ".ruby-version"; then
   export RUBY_VERSION=$(cat .ruby-version)
   echo "Ruby version: v${RUBY_VERSION}. Also exported to RUBY_VERSION"
   rvm install ruby-${RUBY_VERSION}
+  set +u
   if [[ -n "${BKHOME:-}" ]]; then
     [[ -s "$BKHOME/.rvm/scripts/rvm" ]] && source "$BKHOME/.rvm/scripts/rvm"
   fi
+  set -u
   rvm use ruby-${RUBY_VERSION}
   ruby -v
 fi
