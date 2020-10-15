@@ -20,8 +20,9 @@ if test -f ".ruby-version"; then
   rvm install ruby-${RUBY_VERSION}
   if [[ -n "${BKHOME:-}" ]]; then
     [[ -s "$BKHOME/.rvm/scripts/rvm" ]] && source "$BKHOME/.rvm/scripts/rvm"
-  end
+  fi
   rvm use ruby-${RUBY_VERSION}
+  ruby -v
 fi
 
 echo "Checking for NodeJS"
@@ -30,12 +31,16 @@ if test -f ".node-version"; then
   echo "Node version: v${NODE_VERSION}. Also exported to NODE_VERSION"
   n ${NODE_VERSION}
   echo "Yarn version: $(yarn -v)"
+  node -v
+  yarn -v
 else
   export NODE_VERSION="latest"
   echo "Fallback to NodeJS latest version"
   echo "Node version: ${NODE_VERSION}. Also exported to NODE_VERSION"
   n ${NODE_VERSION}
   echo "Yarn version: $(yarn -v)"
+  node -v
+  yarn -v
 fi
 
 echo "Checking for Golang"
@@ -44,4 +49,5 @@ if test -f ".go-version"; then
   echo "Golang version: v${GO_VERSION}. Also exported to GO_VERSION"
   goenv install ${GO_VERSION}
   goenv global ${GO_VERSION}
+  go version
 fi
