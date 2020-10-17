@@ -20,7 +20,8 @@ if test -f ".ruby-version"; then
   rvm alias delete default
   rvm alias create default ruby-${RUBY_VERSION}
   source $(rvm default do rvm env --path)
-  gem install bundler
+  gem install bundler bundle
+  bundle update --bundler
   echo "Ruby version: v${RUBY_VERSION}. Also exported to RUBY_VERSION"
   ruby -v
 fi
