@@ -41,7 +41,7 @@ fi
 echo "Checking for Golang"
 if test -f ".go-version"; then
   export GO_VERSION=$(cat .go-version)
-  goenv install ${GO_VERSION}
+  goenv install --skip-existing ${GO_VERSION}
   goenv global ${GO_VERSION}
   echo "Golang version: ${GO_VERSION}. Also exported to GO_VERSION"
   go version
