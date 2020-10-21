@@ -1,4 +1,4 @@
-# Setup Buildkite Plugin [![Version badge](https://img.shields.io/badge/setup-v0.1.14-blue?style=flat-square)](https://buildkite.com/plugins)
+# Setup Buildkite Plugin [![Version badge](https://img.shields.io/badge/setup-v0.1.15-blue?style=flat-square)](https://buildkite.com/plugins)
 
 
 Similar to GitHub's `setup` actions like `setup-ruby` or `setup-node` but uses third party version managers to download binaries on various platforms. You must install;
