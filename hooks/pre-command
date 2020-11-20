@@ -28,13 +28,13 @@ fi
 echo "Checking for NodeJS"
 if test -f ".node-version"; then
   export NODE_VERSION=$(cat .node-version)
-  n ${NODE_VERSION}
+  nvm use ${NODE_VERSION}
   echo "Node version: ${NODE_VERSION}. Also exported to NODE_VERSION"
   echo "Yarn version: ${NODE_VERSION}"
 else
-  export NODE_VERSION="latest"
-  n ${NODE_VERSION}
-  echo "Fallback to NodeJS latest version"
+  export NODE_VERSION="${NODE_CURRENT_VERSION}"
+  nvm use ${NODE_VERSION}
+  echo "Fallback to NodeJS latest (NODE_CURRENT_VERSION) version"
   echo "Node version: ${NODE_VERSION}. Also exported to NODE_VERSION"
 fi
 
