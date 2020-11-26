@@ -3,15 +3,13 @@
 # shellcheck disable=SC1091
 # shellcheck disable=SC2086
 # shellcheck disable=SC1090
-#! /bin/bash
-
 set -eu
 
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
-VERSION=$(<"$BASEDIR/VERSION")
-# . "$BASEDIR/lib/shared.bash"
+BK_SETUP_BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+BK_SETUP_VERSION=$(<"$BK_SETUP_BASEDIR/VERSION")
+# . "$BK_SETUP_BASEDIR/lib/shared.bash"
 
-echo -e "~~~ :bash: \033[33mSetup\033[0m Buildkite Plugin v$VERSION"
+echo -e "~~~ :bash: \033[33mSetup\033[0m Buildkite Plugin v$BK_SETUP_VERSION"
 
 echo "Checking for Ruby"
 if test -f ".ruby-version"; then
@@ -41,8 +39,8 @@ fi
 echo "Checking for Golang"
 if test -f ".go-version"; then
   export GO_VERSION=$(cat .go-version)
-  goenv install --skip-existing ${GO_VERSION}
-  goenv global ${GO_VERSION}
+  gvm install go${GO_VERSION} --prefer-binary
+  gvm use go${GO_VERSION} --default
   echo "Golang version: ${GO_VERSION}. Also exported to GO_VERSION"
   go version
 else
