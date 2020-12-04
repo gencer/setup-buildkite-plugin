@@ -36,24 +36,24 @@ else
   echo "Node version: ${NODE_VERSION}. Also exported to NODE_VERSION"
 fi
 
-echo "Checking for Golang"
-if test -f ".go-version"; then
-  export GO_VERSION=$(cat .go-version)
-  goenv install --skip-existing ${GO_VERSION}
-  goenv global ${GO_VERSION}
-  echo "Golang version: ${GO_VERSION}. Also exported to GO_VERSION"
-  go version
-else
-  echo "No Golang. Skipping..."
-fi
-
 # echo "Checking for Golang"
 # if test -f ".go-version"; then
 #   export GO_VERSION=$(cat .go-version)
-#   gvm install go${GO_VERSION} --prefer-binary
-#   gvm use go${GO_VERSION} --default
+#   goenv install --skip-existing ${GO_VERSION}
+#   goenv global ${GO_VERSION}
 #   echo "Golang version: ${GO_VERSION}. Also exported to GO_VERSION"
 #   go version
 # else
 #   echo "No Golang. Skipping..."
 # fi
+
+echo "Checking for Golang"
+if test -f ".go-version"; then
+  export GO_VERSION=$(cat .go-version)
+  gvm install go${GO_VERSION} --prefer-binary
+  gvm use go${GO_VERSION} --default
+  echo "Golang version: ${GO_VERSION}. Also exported to GO_VERSION"
+  go version
+else
+  echo "No Golang. Skipping..."
+fi
